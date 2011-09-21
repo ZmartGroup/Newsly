@@ -9,7 +9,7 @@ module Newsly
   	end
 
     def notification(template_name, options = {})
-      @tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => options[:template_type]).first
+      @tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => options[:template_type].to_s).first
       @options = options
       mail(:to => options[:to], :from => options[:from], :subject => "#{@tpl.subject}", :headers => options[:headers])
     end

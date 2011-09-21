@@ -2,7 +2,7 @@
 module Newsly
   class TemplatesController < ApplicationController
 
-    before_filter :get_template, :except => [:index, :send_test]
+    before_filter :get_template, :except => [:index]
   	
   	def index
   		@templates = Newsly::Template.all
@@ -21,9 +21,9 @@ module Newsly
 
     def send_test
       if Newsly::Mailer.notification(
-          :web_welcome, 
+          @template.name, 
           {
-            :template_type => "Customer",
+            :template_type => @template.template_type,
             :from => "info@baraspara.se", 
             :to => "kim.fransman@gmail.com", 
             "name" => "Kim",
