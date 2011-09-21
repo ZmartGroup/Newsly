@@ -48,7 +48,7 @@ module Dummy
       :enable_starttls_auto => true,      
       :authentication => :plain,
       :user_name => "kim.fransman@gmail.com",
-      :password => ENV['GMAIL_PASSWORD']
+      :password => "hatagmail"
     }
     
   end
