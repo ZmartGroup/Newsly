@@ -1,0 +1,3 @@
+class ModelWithout
+	
+end
