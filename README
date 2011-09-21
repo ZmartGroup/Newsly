@@ -1,3 +1,7 @@
-= Newsly
+##Newsly lets you manage your rails mailer templates via liquid.
+Included is the mercury editor (https://github.com/jejacks0n/mercury) for wysiwyg and are ready for 
+sending mails via resque. 
+
+Better description is coming... soon!
 
 This project rocks and uses MIT-LICENSE.
