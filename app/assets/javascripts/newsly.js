@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
     var title   = data.title.value;
     var body    = data.body.value;
     $.ajax({
-      url: '/templates/'+template_id,
+      url:  $("#template").attr('data-url'),
       type: 'POST',
       data: {template: {subject: title, body: body}, '_method': 'PUT'},
       success: function(data){
@@ -24,9 +24,10 @@ jQuery(document).ready(function($) {
   	saveNewsletter();
 		var newsletter_id = $("#newsletter").attr('data-id');
   	var answer = prompt('Are you sure? Type "DELIVER"');
+    var url = $(this).attr('href');
   	if(answer == "DELIVER"){
   		$.ajax({
-  			url: '/newsletters/'+newsletter_id+'/deliver',
+        url:  url,        
   			type: 'POST',
   			data: {'_method': 'PUT', 'answer': answer},
   			success: function(data){
@@ -40,8 +41,9 @@ jQuery(document).ready(function($) {
   	e.preventDefault();
   	saveNewsletter();
 	 	var newsletter_id = $("#newsletter").attr('data-id');
+    var url = $(this).attr('href');    
   	$.ajax({
-			url: '/newsletters/'+newsletter_id+'/send_test',
+      url:  url,
 			type: 'POST',
 			data: {'_method': "PUT"},
 			success: function(data){
@@ -53,8 +55,9 @@ jQuery(document).ready(function($) {
   $('a#send_template_test').click(function(e){
   	e.preventDefault();
 		var template_id = $("#template").attr('data-id');
+    var url = $(this).attr('href');    
   	$.ajax({
-			url: '/templates/'+template_id+'/send_test',
+			url:  url,
 			type: 'POST',
 			data: {'_method': "PUT", },
 			success: function(data){
@@ -70,7 +73,7 @@ function saveNewsletter(){
 	var title 	= $("title").html();
 	var body 		= $("body").html();
 	$.ajax({
-		url: '/newsletters/'+newsletter_id,
+		url:  $("#newsletter").attr('data-url'),
 		type: 'PUT',
 		data: {newsletter: {title: title, body: body}},
 		success: function(data){
