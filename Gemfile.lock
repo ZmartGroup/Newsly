@@ -1,3 +1,15 @@
+GIT
+  remote: git://github.com/jejacks0n/mercury.git
+  revision: bbb80cf2caec40182062798ff935fcb625c9bda6
+  specs:
+    mercury-rails (0.2.0)
+      coffee-script
+      formtastic
+      json
+      paperclip
+      rails (~> 3.1.0)
+      sass-rails
+
 PATH
   remote: .
   specs:
@@ -8,17 +20,6 @@ PATH
       resque
       resque_mailer
       sanitize
-
-PATH
-  remote: ../../mercury
-  specs:
-    mercury-rails (0.2.0)
-      coffee-script
-      formtastic
-      json
-      paperclip
-      rails (~> 3.1.0)
-      sass-rails
 
 GEM
   remote: http://rubygems.org/
@@ -63,7 +64,7 @@ GEM
     coffee-script-source (1.1.2)
     columnize (0.3.4)
     erubis (2.7.0)
-    execjs (1.2.7)
+    execjs (1.2.8)
       multi_json (~> 1.0)
     formtastic (1.2.4)
       actionpack (>= 2.3.7)
@@ -168,7 +169,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jquery-rails
   mercury-rails!
   newsly!
   ruby-debug19
