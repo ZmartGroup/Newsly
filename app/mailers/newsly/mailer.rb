@@ -13,7 +13,10 @@ module Newsly
     def notification(template_name, template_type, from, to, template_data = {}, headers = {})
       @tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => template_type).first
       @template_data = template_data
-      mail(:to => to.to_s, :from => from.to_s, :subject => "#{@tpl.subject}", :headers => headers)
+      headers[:subject] = "#{@tpl.subject}"
+      headers[:to] = to.to_s
+      headers[:from] = from.to_s
+      mail(headers)
     end
 
 	end
