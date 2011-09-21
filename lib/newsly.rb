@@ -10,4 +10,8 @@ module Newsly
   mattr_accessor :test_data
   @@test_data = {}
 
+  def self.setup
+    yield self
+  end
+
 end

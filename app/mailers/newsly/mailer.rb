@@ -1,7 +1,7 @@
 module Newsly
   class Mailer < ActionMailer::Base
-    #include Resque::Mailer  	
-  	
+    #include Resque::Mailer
+      	
     #TODO: needs to be refactored accordingly to notification and Newsly::Template!
     def newsletter(newsletter_id, options = {})
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
