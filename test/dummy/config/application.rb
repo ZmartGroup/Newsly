@@ -36,7 +36,7 @@ module Dummy
     config.filter_parameters += [:password]
 
     # Enable the asset pipeline
-    config.assets.enabled = true
+    config.assets.enabled = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
@@ -48,7 +48,7 @@ module Dummy
       :enable_starttls_auto => true,      
       :authentication => :plain,
       :user_name => "kim.fransman@gmail.com",
-      :password => "Fransman84"
+      :password => "xxxx"
     }
     
   end
