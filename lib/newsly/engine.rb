@@ -8,7 +8,6 @@ module Newsly
     end
 
     config.after_initialize do |app|
-    	@@models = ActiveRecord::Base.send(:subclasses)
       Dir["#{app.root}/app/models/*"].each do |file|
          @@model = File.basename(file, ".*").classify.constantize
          Newsly.test_data.merge!(@@model.newsly_test_data) if @@model.respond_to?(:newsly_test_data)
