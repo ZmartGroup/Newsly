@@ -1,31 +1,10 @@
 <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
 <html>
   <head>
-    <title>Baraspara</title>
+    <title>Newsly MailTemplate</title>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   </head>
-  <body bgcolor="#eeeeee" style="float: left; width: 100%; background-color: #eee; padding-bottom: 100px; text-align: center;">
-		<style type="text/css">
-		.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-		.clearfix:after { clear: both; }
-		.clearfix { zoom: 1; }
-		#newsletter{font-family: "Lucida Grande", sans-serif;}		
-		h2, h3{ margin: 0; padding: 0;}
-		</style>
-		<div style="width: 650px; margin: 20px auto; background-color: #eee; text-align: left;">
-			<img src="http://minasidor.baraspara.se/images/web/my_pages/temp_logo2.png" style="float: left; margin: 20px 0 0 20px"/>
-			<div class="clearfix"></div>
-    		<div style="float: left; text-align: left; width: 618px; margin: 0 10px; font-size: 12px; line-height: 24px; color: #444; background: #fff; padding: 1px 10px; border: 1px solid #cecece; border-top: 0;">
-    		
-    		<%= yield %>
-
-			<div class="clearfix"></div>
-			<div style="float: left; margin: 20px auto;">
-				<h4>Med vänlig hälsning</h4>
-				Baraspara Sverige AB
-			</div>
-    	</div>
-			<div class="clearfix"></div>
-		</div>	
+  <body>	
+		<%= yield %>
   </body>
 </html>
