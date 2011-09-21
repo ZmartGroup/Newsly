@@ -7,11 +7,11 @@ require "newsly/version"
 Gem::Specification.new do |s|
   s.name        = "newsly"
   s.version     = Newsly::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Newsly."
-  s.description = "TODO: Description of Newsly."
+  s.authors     = ["Kim Fransman"]
+  s.email       = ["kim.fransman@baraspara.se"]
+  s.homepage    = "http://baraspara.se"
+  s.summary     = "Manage mailer templates via wysiwyg and liquid"
+  s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   
