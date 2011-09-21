@@ -20,7 +20,6 @@ module Newsly
     end
 
     def send_test
-      debugger
       if Newsly::Mailer.notification(@template.name, @template.template_type, "info@baraspara.se", "kim.fransman@gmail.com", Newsly.test_data, {}).deliver
         render :text => "Okidoki"
       end
