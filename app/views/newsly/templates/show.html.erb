@@ -1,0 +1,14 @@
+<div id="content">
+	<div id="template" data-id="<%=@template.id%>">
+		<h2 id="title" class="mercury-region" data-type="markupable"><%= @template.subject.html_safe %></h2>
+		<div id="body" class="mercury-region" data-type="editable"><%=	@template.body.html_safe %></div>		
+	</div>
+</div>
+<div id="sidebar">
+	<ul class="links">
+		<li class="button">
+			<%= link_to "<em>❖</em>Send Test".html_safe, send_test_template_path(@template), :id => "send_template_test" unless @template.name == "newsletter" %>
+		</li>
+		<li><%= link_to '<em>☜</em> Back'.html_safe, templates_path %></li>
+	</ul>
+</div>

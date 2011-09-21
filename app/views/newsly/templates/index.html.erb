@@ -1,0 +1,14 @@
+<div id="content">
+	<h2><%= t("Templates")%></h2>
+	<table cellspacing="0" cellpadding="0">
+	  <tbody>
+			<% @templates.each do |template| %>
+			  <tr>
+			    <td class="title"><%= link_to template.name, template %> (<%=t(template.template_type)%>)</td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div id="sidebar">
+</div>

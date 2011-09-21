@@ -1,0 +1,7 @@
+development:
+  database: baraspara.db
+  adapter: sqlite3
+
+test: &test
+  database: baraspara_test.db
+  adapter: sqlite3

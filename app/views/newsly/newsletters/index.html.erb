@@ -1,0 +1,19 @@
+<div id="content">
+	<h2><%= t("Newsletters")%></h2>
+	<table cellspacing="0" cellpadding="0">
+	  <tbody>
+			<% @newsletters.each do |newsletter| %>
+			  <tr>
+			    <td class="<%= newsletter.sent? ? "sent": "draft" %>"><%= newsletter.sent? ? t("sent"): t("draft") %></td>
+			    <td class="title"><%= link_to newsletter.title, newsletter %></td>
+			    <td class="action"><%= link_to 'Destroy', newsletter, confirm: 'Are you sure?', method: :delete if !newsletter.sent?%></td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div id="sidebar">
+	<ul class="links">
+		<li><%= link_to "<em>+</em>#{t('New Newsletter')}".html_safe, new_newsletter_path %></li>
+	</ul>
+</div>

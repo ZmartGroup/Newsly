@@ -1,0 +1,12 @@
+<div id="sidebar">
+	<ul class="links">
+		<% if !@newsletter.sent? and @newsletter.persisted?%>
+			<li class="buttons">
+				<%= link_to "<em>❖</em>Send test".html_safe, send_test_newsletter_path(@newsletter), :id => "send_test"%>
+				<%= link_to "<em>✈</em>Deliver!".html_safe, deliver_newsletter_path(@newsletter), :id => "deliver"%>
+			</li>
+		<% end %>
+		<li><%= link_to '<em>☜</em> Back'.html_safe, newsletters_path %></li>
+	</ul>
+	<div id="saved"></div>	
+</div>

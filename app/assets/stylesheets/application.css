@@ -1,0 +1,236 @@
+/*
+* This is a manifest file that'll automatically include all the stylesheets available in this directory
+* and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+* the top of the compiled file, but it's generally better to create a new file per style scope.
+*= require_self
+*= require_tree . 
+*/
+
+
+body {
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+  background-color: #eee;
+  font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+  font-size: 14px;
+  line-height: 22px;
+  color: #444;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+h2, h1{
+	margin: 0 0 10px;
+	padding: 0 0 10px;
+	border-bottom: 2px solid #ccc;
+	float: left;
+	width: 100%;
+	color: green;      	
+}
+
+a  {color: #03c}
+a:hover {
+  color: green;
+  text-indent: 2px;
+  text-decoration: none;
+}
+
+
+#page {
+  background-color: #f0f0f0;
+  width: 960px;
+  margin: 25px;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+#wrapper{
+}
+#content {
+  float: left;
+  background-color: white;
+  padding: 25px;
+  width: 700px;
+}
+
+#sidebar {
+  float: right;
+  width: 175px;
+}
+
+#footer {
+  clear: both;
+  font-size: 0.9em;
+  color: #ccc;
+  padding: 25px 0;
+}
+
+
+	table{
+		width: 100%;
+	}
+	td.draft, td.sent{
+		width: 20px;
+	}
+	td.action{
+		width: 20px;
+		padding: 5px;
+		font-size: 11px;
+	}
+td {
+  padding: 5px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+td.draft{
+	font-size: 11px;
+	background: #999;
+	color: #eee;
+}
+td.sent{
+	color: #fff;
+	background: green;
+	font-size: 11px;
+}
+table tr:nth-child(2n+2){
+	background: #eee;
+}
+#sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+#sidebar li {
+  list-style-type: none;
+}
+#sidebar ul.links li {
+  margin-bottom: 5px;
+  float: left;
+  width: 100%;
+  border-bottom: 1px dotted #ccc;
+}
+#sidebar ul.links li a{
+	float: left;
+	width:100%;
+	padding: 3px 0;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+li a em{
+  padding-right: 5px;
+  font-style: normal;
+}
+
+form{
+	width: 700px;
+	float: left;
+}
+.field{
+	margin-bottom: 5px;
+	float: left;
+	width: 700px;
+}
+.field input, .field textarea{
+	border: 1px solid #ccc;
+}
+.field input{
+	float: left;
+	width: 699px;
+	padding: 10px 0;
+	text-indent: 10px;
+}
+.field textarea{
+	padding: 10px;
+	float: left;      	
+}
+.field .body{
+	width: 440px;
+}
+.field .sidebar{
+	width: 200px;
+	float: right;
+}
+
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+#sidebar ul.links li.buttons, #sidebar ul.links li.button{
+  border-bottom: 0;
+  padding-bottom: 10px;
+}
+#sidebar ul.links li.buttons a, #sidebar ul.links li.button a{
+  float: left;
+  width: 42%;
+  background: rgba(0,100,0,0.4);
+  border-radius: 4px;
+  padding: 2px 4px;
+  border: 2px solid #fff;
+  font-size: 12px;
+  color: #fff;
+  text-shadow: 1px 1px 1px #555;
+  text-align: center;
+}
+
+#sidebar ul.links li.buttons a:last-child{
+  float: right;
+}
+
+#sidebar ul.links li.buttons a:hover, #sidebar ul.links li.button a:hover{
+  text-indent: 0;
+  border: 2px solid #ccc;
+  background: rgba(0, 155, 0, 0.6);
+}
+#sidebar ul.links li.button a{
+  width: 100%;
+}
+
+#saved{
+  float: left;
+  margin: 5px 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+#newsletter{
+  width: 660px !important;
+  margin: 0 auto !important;
+}
+
+#nav{
+  list-style: none;
+  float:left;
+  margin: 0;
+  padding: 0;
+}
+#nav li{
+  float: left;
+}
+#nav li a{
+  padding: 5px 10px;
+  float: left;
+  margin-right: 3px;
+  color: #444;
+  font-weight: bold;
+  text-decoration: none;
+}
+#nav li a:hover{
+  text-indent: 0px;
+  background: #ccc;
+}
+#nav li.active a{
+  background: #fff;
+}
+
+#aloha-loading{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  background: #feb;
+}
+.aloha-sidebar-handle, .aloha-sidebar-bar{
+  display: none;
+}

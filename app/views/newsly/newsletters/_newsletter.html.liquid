@@ -1,0 +1,26 @@
+#THIS GOES IN DATABASE MOFO!
+<style type="text/css">
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+#newsletter{font-family: "Lucida Grande", sans-serif;}
+h2, h3{ margin: 0; padding: 0;}
+</style>
+<div style="width: 650px; margin: 20px auto; background-color: #eee;">
+	
+	<img src="http://minasidor.baraspara.se/images/web/my_pages/temp_logo2.png" style="float: left; margin: 20px 0 0 20px" class="editable"/>
+	<div class="editable"style="float: right; margin: 20px 20px 0 0; font-size: 11px; color: #777;">Ser brevet konstigt ut? <a href="#">L&auml;s det p&aring; webben</a> ist&auml;llet.</div>
+	<div class="clearfix"></div>
+	<div style="float: left; background-image: url('http://minasidor.baraspara.se/images/web/my_pages/mail_header_640.png'); width: 630px; padding: 10px 10px 0 0; background-repeat: no-repeat; margin: 20px 0 0 10px; height: 30px;">
+		<h4 class="title editable_block" id="title" style="font-weight: normal; font-size: 12px; text-align: right; margin: 0; padding: 0; color: #555;">{{newsletter.title}}</h4>
+	</div>
+	<div style="float: left; text-align: left;width: 618px; margin: 0 10px; font-size: 12px; line-height: 24px; color: #444; background: #fff; padding: 1px 10px; border: 1px solid #cecece; border-top: 0;" id="body">
+			{{newsletter.body}}
+	</div>
+	<div class="editable" style="width: 620px; margin: 0 10px; font-size: 11px; line-height: 18px; padding: 20px 5px; text-align: left; float: left;"> 
+		<b>Varf&ouml;r f&aring;r jag detta mail?</b>
+		<br />
+		Du f&aring;r detta nyhetsbrev eftersom du &auml;r medlem p&aring; Baraspara. Vill du inte ha fler nyhetsbrev kan du givetvis <a href="#">avsluta din prenumeration.</a>
+	</div>
+	<div class="clearfix"></div>
+</div>
