@@ -19,5 +19,10 @@ module Newsly
       mail(headers)
     end
 
+    def render_body(template_name, template_type, template_data = {})
+      tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => template_type).first
+      tpl.render(template_data)
+    end
+
 	end
 end
