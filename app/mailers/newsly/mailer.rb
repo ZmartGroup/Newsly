@@ -30,11 +30,13 @@ module Newsly
     end
 
     #TODO: needs to be refactored accordingly to notification and Newsly::Template!
-    def newsletter(newsletter_id, options = {})
-  		@newsletter = Newsly::Newsletter.find(newsletter_id)
-      @options    = options
-      @options = @options.merge({"newsletter" => @newsletter})
-  		mail(:to => email, :subject => "#{@newsletter.title}")
+    def newsletter(newsletter_id, email, options = {})
+  		newsletter = Newsly::Newsletter.find(newsletter_id)
+      mail_body = newsletter.render options.merge({"newsletter" => @newsletter})
+  		ActionMailer::Base.mail(:to => email, :subject => "#{newsletter.title}") do |format|
+        format.html { render :text => mail_body }
+        format.text { render :text => Sanitize.clean(mail_body) }
+      end
   	end
 
     def send_mail(template_name, to, template_data = {})
