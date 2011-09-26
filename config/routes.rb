@@ -9,7 +9,8 @@ Newsly::Engine.routes.draw do
 
 	resources :templates do
 		member do
-			put 	'send_test'
+			put	'send_test'
+			put 'publish'
 		end
 	end
 

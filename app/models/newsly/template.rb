@@ -10,5 +10,6 @@ module Newsly
   	def render(options={})
   		Liquid::Template.parse(self.body).render options
   	end
+
   end
 end

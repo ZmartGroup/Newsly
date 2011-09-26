@@ -1,17 +1,23 @@
 # encoding: UTF-8
 module Newsly
   class TemplatesController < ApplicationController
-
-    before_filter :get_template, :except => [:index]
-  	
+	
   	def index
-  		@templates = Newsly::Template.all
+  		@templates = Newsly::Template.where(:draft => false)
   	end
 
   	def show
+      @template = Newsly::Template.where(:parent_id => params[:id], :draft => true).first
+      if @template.nil?
+        @template = Newsly::Template.find(params[:id]).dup
+        @template.draft = true
+        @template.parent_id = params[:id]
+        @template.save
+      end
   	end
 
   	def update
+      @template = Newsly::Template.find(params[:id])
       if @template.update_attributes(params[:template])
         render :text => "Sparad"
       else
@@ -20,6 +26,7 @@ module Newsly
     end
 
     def send_test
+      @template = Newsly::Template.find(params[:id])
       Newsly.test_data =  {"kund" => { 
       "namn"          =>  "Kim Fransman",
       "foretagsnamn"  =>  "Kims Firma",
@@ -52,17 +59,23 @@ module Newsly
       "ort"               =>  "Nynäshamn",
       "postnummer"        =>  "14950"}}
 
-      if Newsly::Mailer.send_mail(@template.name, "kim.fransman@gmail.com", Newsly.test_data).deliver
+      Newsly.test_receiver = "kim.fransman@gmail.com"
+
+      if Newsly::Mailer.send_mail(@template.id, Newsly.test_receiver, Newsly.test_data).deliver
         render :text => "Okidoki"
       end
 
     end
 
 
-  	protected
-  		def get_template
-  			@template = Newsly::Template.find(params[:id])
-  		end
+    def publish
+      @draft = Newsly::Template.find(params[:id])
+      @original = Newsly::Template.find(@draft.parent_id)
+      @original.subject = @draft.subject
+      @original.body = @draft.body
+      @original.save
+      render :text => "Published"
+    end
 
   end
 end

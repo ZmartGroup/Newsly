@@ -6,9 +6,11 @@
 </div>
 <div id="sidebar">
 	<ul class="links">
-		<li class="button">
-			<%= link_to "<em>❖</em>Send Test".html_safe, send_test_template_path(@template), :id => "send_template_test" unless @template.name == "newsletter" %>
+    <li class="buttons">
+			<%= link_to "<em>❖</em>Test".html_safe, send_test_template_path(@template), :class => "remote" %>
+			<%= link_to "<em>✈</em>Publish".html_safe, publish_template_path(@template), :class => "remote" %>
 		</li>
+
 		<li><%= link_to '<em>☜</em> Back'.html_safe, templates_path %></li>
 	</ul>
 </div>

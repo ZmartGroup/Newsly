@@ -6,11 +6,11 @@ require "sanitize"
 
 module Newsly
 
-	# Custom domain for cookies. Not set by default
-  mattr_accessor :test_data, :resource_email_column
+  mattr_accessor :test_data, :resource_email_column, :test_receiver
   @@test_data = {}
   @@recipient_group = {}
   @@resource_email_column = :email
+  @@test_receiver
 
   def self.setup
     yield self

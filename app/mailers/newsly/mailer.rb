@@ -15,9 +15,9 @@ module Newsly
       tmpl = if template_id 
         Newsly::Template.find(template_id) 
       elsif template_name
-        Newsly::Template.find_by_name(template_name)
+        Newsly::Template.where(:name => template_name, :draft => false).first
       else
-        Newsly::Template.find_by_caller(self.class.to_s, caller).first
+        Newsly::Template.find_by_caller(self.class.to_s, caller).where(:draft => false).first
       end
 
       if tmpl 
@@ -41,12 +41,12 @@ module Newsly
       end
   	end
 
-    def send_mail(template_name, to, template_data = {})
-      mail(:to => to, :template_name => template_name, :template_data => template_data)
+    def send_mail(template_id, to, template_data = {})
+      mail(:to => to, :template_id => template_id, :template_data => template_data)
     end
 
     def self.render_body(template_name, template_type, template_data = {})
-      tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => template_type).first
+      tpl = Newsly::Template.where(:name => template_name.to_s, :template_type => template_type, :draft => false).first
       tpl.render(template_data)
     end
 
