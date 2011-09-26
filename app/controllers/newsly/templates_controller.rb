@@ -19,7 +19,7 @@ module Newsly
   	def update
       @template = Newsly::Template.find(params[:id])
       if @template.update_attributes(params[:template])
-        render :text => "Sparad"
+        render :text => "Last saved #{distance_of_time_in_words_to_now(Time.now, true)} ago"
       else
         render :text => "Kunde inte sparas"
       end

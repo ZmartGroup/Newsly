@@ -1,7 +1,6 @@
 module Newsly
   class NewslettersController < ApplicationController
-    
-    include ActionView::Helpers::DateHelper
+  
 
     respond_to :html, :json
     respond_to :text, :only => :preview

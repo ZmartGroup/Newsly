@@ -1,7 +1,8 @@
 jQuery(document).ready(function($) {
 
-
   if (top.Mercury) {
+    //top.Mercury.saveURL = $("#template").attr('data-url');
+    //top.Mercury.saveStyle = "form";
     window.Mercury = top.Mercury;
     Mercury.PageEditor.prototype.save = function() {
       var data = this.serialize();
@@ -11,15 +12,15 @@ jQuery(document).ready(function($) {
         type: 'POST',
         data: {template: {subject: data.subject.value, body: data.body.value}, '_method': 'PUT'},
         success: function(data){
-          alert(data);
-          //window.location = "/templates";
+          $('#saved').html(data);
         }
       });
     }
-  };
+  }
 
   $('a.remote').click(function(e){
     e.preventDefault();
+    top.Mercury.trigger('action', {action: 'save'});
     var template_id = $("#template").attr('data-id');
     var url = $(this).attr('href');
     $.ajax({

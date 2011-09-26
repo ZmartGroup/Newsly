@@ -11,14 +11,14 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data: {newsletter: {title: data.title.value, body: data.body.value}, '_method': 'PUT'},
       success: function(data){
-        alert(data);
-        //window.location = "/templates";
+        $('#saved').html(data);
       }
     });
   }};
 
   $('a#deliver').click(function(e){
   	e.preventDefault();
+    top.Mercury.trigger('action', {action: 'save'});
 		var newsletter_id = $("#newsletter").attr('data-id');
   	var answer = prompt('Are you sure? Type "DELIVER"');
     var url = $(this).attr('href');
@@ -36,6 +36,7 @@ jQuery(document).ready(function($) {
 
   $('a#send_test').click(function(e){
   	e.preventDefault();
+    top.Mercury.trigger('action', {action: 'save'});    
 	 	var newsletter_id = $("#newsletter").attr('data-id');
     var url = $(this).attr('href');    
   	$.ajax({
