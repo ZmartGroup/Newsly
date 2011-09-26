@@ -1,6 +1,6 @@
 <div id="content">
 	<div id="template" data-id="<%=@template.id%>" data-url="<%=template_path(@template)%>">
-		<h2 id="title" class="mercury-region" data-type="markupable"><%= @template.subject.html_safe %></h2>
+		<h2 id="subject" class="mercury-region" data-type="markupable"><%= @template.subject.html_safe %></h2>
 		<div id="body" class="mercury-region" data-type="editable"><%=	@template.body.html_safe %></div>		
 	</div>
 </div>
@@ -13,4 +13,4 @@
 	</ul>
 </div>
 
-<%= javascript_include_tag "/mercury/javascripts/mercury_loader.js" %>
+<%= javascript_include_tag "/mercury/javascripts/mercury_loader.js", "templates" %>

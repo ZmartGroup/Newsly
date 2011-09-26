@@ -52,9 +52,10 @@ module Newsly
       "ort"               =>  "Nynäshamn",
       "postnummer"        =>  "14950"}}
 
-      if Newsly::Mailer.notification(@template.name, @template.template_type, "info@baraspara.se", "kim.fransman@gmail.com", Newsly.test_data, {}).deliver
+      if Newsly::Mailer.send_mail(@template.name, "kim.fransman@gmail.com", Newsly.test_data).deliver
         render :text => "Okidoki"
       end
+
     end
 
 
