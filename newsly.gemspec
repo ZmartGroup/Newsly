@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Newsly::VERSION
   s.authors     = ["Kim Fransman"]
   s.email       = ["kim.fransman@baraspara.se"]
-  s.homepage    = "http://baraspara.se"
-  s.summary     = "Manage mailer templates via wysiwyg and liquid"
-  s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now."
+  s.homepage    = "http://github.com/ZmartGroup/Newsly"
+  s.summary     = "Manage mailer templates via wysiwyg and liquid. And send out newsletters."
+  s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now. And send out newsletters."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   
