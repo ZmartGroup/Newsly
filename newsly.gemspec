@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "resque_mailer"
   s.add_dependency "liquid"
   s.add_dependency "sanitize"
-  s.add_dependency "jquery-rails"  
+  s.add_dependency "jquery-rails"
   #s.add_dependency "mercury-rails"
 
   s.add_development_dependency "sqlite3"
