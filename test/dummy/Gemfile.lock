@@ -1,8 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.6)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
+    letter_opener (0.0.2)
+      launchy
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  letter_opener

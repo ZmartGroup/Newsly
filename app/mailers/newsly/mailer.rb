@@ -24,21 +24,19 @@ module Newsly
         headers[:subject] ||= tmpl.subject
         mail_body = tmpl.render(template_data)
         super(headers) do |format|
-          format.html { render :text => mail_body }
-          format.text { render :text => Sanitize.clean(mail_body) }
+          format.text { render :text => Sanitize.clean(mail_body.html_safe) }
+          format.html { render :inline => mail_body.html_safe, :layout => true }
         end
       else
         super(headers, &block)
       end
     end
 
-    def newsletter(newsletter_id, email, options = {})
+    def send_newsletter(newsletter_id, to, template_data = {})
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
-      mail_body = newsletter.render options.merge({"newsletter" => @newsletter})
-  		ActionMailer::Base.mail(:to => email, :subject => "#{@newsletter.title}") do |format|
-        format.html { render :text => mail_body }
-        format.text { render :text => Sanitize.clean(mail_body) }
-      end
+      @template = Newsly::Template.where(:name => "newsletter", :draft => false).first
+      @template_data = template_data.merge({"newsletter" => {"body" => @newsletter.render(template_data)}})
+      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data)
   	end
 
     def send_mail(template_id, to, template_data = {})

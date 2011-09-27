@@ -4,6 +4,7 @@ require 'rails/all'
 
 Bundler.require
 require "newsly"
+require "letter_opener"
 
 module Dummy
   class Application < Rails::Application
@@ -41,15 +42,7 @@ module Dummy
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.action_mailer.smtp_settings= {
-      :address => "smtp.gmail.com",
-      :port => "587",
-      :domain => "localhost.localdomain",
-      :enable_starttls_auto => true,      
-      :authentication => :plain,
-      :user_name => "kim.fransman@gmail.com",
-      :password => "hatagmail"
-    }
+    config.action_mailer.delivery_method = :letter_opener      
     
   end
 end

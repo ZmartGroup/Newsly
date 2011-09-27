@@ -5,7 +5,7 @@ module Newsly
       
       Newsly.get_newsletter_receipient_group(:newsletter_resources).call do |resource|
 
-        Newsly::Mailer.newsletter(newsletter_id, resource.send(Newsly.resource_email_column), resource.to_liquid).deliver   
+        Newsly::Mailer.send_newsletter(newsletter_id, resource.send(Newsly.resource_email_column), resource.to_liquid).deliver   
       end
 
     end
