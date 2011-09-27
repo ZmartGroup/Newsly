@@ -10,7 +10,7 @@ jQuery(document).ready(function($) {
       $.ajax({
         url:  $("#template").attr('data-url'),
         type: 'POST',
-        data: {template: {subject: data.subject.value, body: data.body.value}, '_method': 'PUT'},
+        data: {template: {subject: data.subject.value, body: data.body.value, text_body: data.text_body.value}, '_method': 'PUT'},
         success: function(data){
           $('#saved').html(data);
         }
@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data: {'_method': "PUT", },
       success: function(data){
-        alert(data);
+        $("#flash").html(data).effect('fade');
       }
     });
   });

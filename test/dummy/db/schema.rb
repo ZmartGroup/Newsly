@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926115307) do
+ActiveRecord::Schema.define(:version => 20110927121022) do
 
   create_table "newsly_newsletters", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110926115307) do
     t.boolean  "sent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "text_body"
   end
 
   create_table "newsly_templates", :force => true do |t|
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110926115307) do
     t.datetime "updated_at"
     t.boolean  "draft"
     t.integer  "parent_id"
+    t.text     "text_body"
   end
 
 end

@@ -39,6 +39,7 @@ module Newsly
       @original = Newsly::Template.find(@draft.parent_id)
       @original.subject = @draft.subject
       @original.body = @draft.body
+      @original.text_body = @draft.text_body
       @original.save
       render :text => "Published"
     end

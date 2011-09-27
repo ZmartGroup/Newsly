@@ -11,6 +11,7 @@
   <div class="flash">  <%= flash[:notice] %> </div>
   <div class="clearfix"></div>
 <% end %>
+<div id="flash" class="flash"></div>
 <div id="page">
   <ul id="nav">
     <li class="<%= "active" if params[:controller] == "newsly/newsletters" %>"><%= link_to t('Newsletters'), newsletters_path %></li>

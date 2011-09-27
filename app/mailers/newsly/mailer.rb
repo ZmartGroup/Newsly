@@ -11,6 +11,7 @@ module Newsly
       template_data = headers.delete(:template_data)
       template_id   = headers.delete(:template_id)
       template_name = headers.delete(:template_name)
+      text_body     = headers.delete(:text_body)
 
       tmpl = if template_id 
         Newsly::Template.find(template_id) 
@@ -22,10 +23,13 @@ module Newsly
 
       if tmpl 
         headers[:subject] ||= tmpl.subject
-        mail_body = tmpl.render(template_data)
+        mail_body = tmpl.render(template_data).html_safe
+        if text_body.nil?
+          text_body = tmpl.render_text(template_data).html_safe
+        end
         super(headers) do |format|
-          format.text { render :text => Sanitize.clean(mail_body.html_safe) }
-          format.html { render :inline => mail_body.html_safe, :layout => true }
+          format.text { render :text => text_body }
+          format.html { render :inline => mail_body, :layout => true }
         end
       else
         super(headers, &block)
@@ -36,7 +40,8 @@ module Newsly
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
       @template = Newsly::Template.where(:name => "newsletter", :draft => false).first
       @template_data = template_data.merge({"newsletter" => {"body" => @newsletter.render(template_data)}})
-      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data)
+      @text_body = @newsletter.render_text(@template_data)
+      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data, :text_body => @text_body)
   	end
 
     def send_mail(template_id, to, template_data = {})
