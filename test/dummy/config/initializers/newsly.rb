@@ -39,6 +39,9 @@ Newsly.setup do |config|
 	}
 end
 
-Newsly.define_newsletter_receipient_group :newsletter_resources do
-	Customer.select('customers.*').includes([:address, :agent]).where(:canceled_at => nil).find_each(:batch_size => 1000)
+Newsly.define_newsletter_receipient_group :companies do
+	Customer.select('customers.*').where(:company => true)
+end
+Newsly.define_newsletter_receipient_group :persons do
+	Customer.select('customers.*').where(:company => false)
 end

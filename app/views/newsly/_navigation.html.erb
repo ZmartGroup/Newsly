@@ -1,0 +1,5 @@
+<ul id="nav">
+  <li class="<%= "active" if params[:controller] == "newsly/newsletters" %>"><%= link_to t('Newsletters'), newsletters_path %></li>
+  <li class="<%= "active" if params[:controller] == "newsly/templates" %>"><%= link_to t('Templates'), templates_path %></li>
+</ul>
+<div class="clearfix"></div>  

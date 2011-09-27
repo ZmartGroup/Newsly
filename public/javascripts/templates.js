@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
       type: 'POST',
       data: {'_method': "PUT", },
       success: function(data){
-        $("#flash").html(data).effect('fade');
+        $("#flash").html(data).hide("fade", {}, 1000);
       }
     });
   });

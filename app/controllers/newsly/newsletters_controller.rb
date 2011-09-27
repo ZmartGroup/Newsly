@@ -35,7 +35,10 @@ module Newsly
 
     def deliver
       if params[:answer] == "DELIVER"
-        Resque.enqueue(Newsly::NewsletterSender, @newsletter.id, @template.id)
+        #Newsly::NewsletterSender.perform(@newsletter.id, params[:recipient_groups])
+        Resque.enqueue(Newsly::NewsletterSender, @newsletter.id, params[:recipient_groups])
+        @newsletter.sent = true
+        @newsletter.save
         render :text => "Sent"
       else
         render :text => "WARNING! Not sent, did you answer correctly?"

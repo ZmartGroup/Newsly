@@ -187,6 +187,15 @@ form{
 #sidebar ul.links li.button a{
   width: 100%;
 }
+#sidebar ul li form{
+  width: 100%;
+}
+#sidebar ul li ul li{
+  font-size: 0.8em;
+}
+#sidebar ul li ul li:last-child{
+  border-bottom: 0;
+}
 
 #saved{
   float: left;

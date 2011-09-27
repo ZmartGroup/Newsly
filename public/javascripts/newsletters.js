@@ -19,19 +19,32 @@ jQuery(document).ready(function($) {
   $('a#deliver').click(function(e){
   	e.preventDefault();
     top.Mercury.trigger('action', {action: 'save'});
-		var newsletter_id = $("#newsletter").attr('data-id');
-  	var answer = prompt('Are you sure? Type "DELIVER"');
-    var url = $(this).attr('href');
-  	if(answer == "DELIVER"){
-  		$.ajax({
-        url:  url,        
-  			type: 'POST',
-  			data: {'_method': 'PUT', 'answer': answer},
-  			success: function(data){
-  				$("#flash").html(data);
-  			}
-  		});
-  	}
+    
+    var recipient_groups = [];
+
+    $('#groupform input[type=checkbox]').each(function(){
+      if($(this).is(':checked')){
+        recipient_groups.push($(this).val());
+      }
+    });
+    
+    if(recipient_groups.length > 0){
+      var newsletter_id = $("#newsletter").attr('data-id');
+      var answer = prompt('Are you sure? Type "DELIVER"');
+      var url = $(this).attr('href');
+      if(answer == "DELIVER"){
+        $.ajax({
+          url:  url,        
+          type: 'POST',
+          data: {'_method': 'PUT', 'answer': answer, 'recipient_groups[]': recipient_groups},
+          success: function(data){
+            $("#flash").html(data).hide("fade", {}, 1000);
+          }
+        });
+      } 
+    } else{
+      alert('You have to select atleast one group to send to!');
+    }
   });
 
   $('a#send_test').click(function(e){
@@ -44,7 +57,7 @@ jQuery(document).ready(function($) {
 			type: 'POST',
 			data: {'_method': "PUT"},
 			success: function(data){
-				$("#flash").html(data).effect('fade');
+				$("#flash").html(data).hide("fade", {}, 1000);
 			}
 		});	
   });

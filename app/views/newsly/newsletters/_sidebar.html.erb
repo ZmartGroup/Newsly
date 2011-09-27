@@ -1,10 +1,26 @@
 <div id="sidebar">
 	<ul class="links">
 		<% if !@newsletter.sent? and @newsletter.persisted?%>
-			<li class="buttons">
+			<li class="button">
 				<%= link_to "<em>❖</em>Send test".html_safe, send_test_newsletter_path(@newsletter), :id => "send_test"%>
-				<%= link_to "<em>✈</em>Deliver!".html_safe, deliver_newsletter_path(@newsletter), :id => "deliver"%>
 			</li>
+			<% if Newsly.recipient_groups.count > 0 %>
+				<li class="groups">
+					<form id="groupform" class="groupform">
+						<ul>
+							<% for group in Newsly.recipient_groups %>
+								<li>
+									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" />
+									<label for="group_<%=group[0].to_s%>"><%= group[0].to_s.humanize %> (<%= group[1].call.count %>)</label>
+								</li>
+							<% end %>
+						</ul>
+					</form>
+				</li>
+				<li class="button">
+					<%= link_to "<em>✈</em>Deliver!".html_safe, deliver_newsletter_path(@newsletter), :id => "deliver"%>			
+				</li>
+			<% end %>
 		<% end %>
 		<li><%= link_to '<em>☜</em> Back'.html_safe, newsletters_path %></li>
 	</ul>

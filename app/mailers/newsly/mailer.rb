@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Newsly
   class Mailer < ActionMailer::Base
-    #include Resque::Mailer
+    include Resque::Mailer
 
     default :from => "Newsly <noreply@newsly.com>"
     
