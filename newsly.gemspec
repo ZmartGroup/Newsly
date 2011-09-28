@@ -7,8 +7,8 @@ require "newsly/version"
 Gem::Specification.new do |s|
   s.name        = "newsly"
   s.version     = Newsly::VERSION
-  s.authors     = ["Kim Fransman"]
-  s.email       = ["kim.fransman@baraspara.se"]
+  s.authors     = ["Kim Fransman", "Niklas Lundgren"]
+  s.email       = ["it@baraspara.se"]
   s.homepage    = "http://github.com/ZmartGroup/Newsly"
   s.summary     = "Manage mailer templates via wysiwyg and liquid. And send out newsletters."
   s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now. And send out newsletters."

@@ -14,7 +14,7 @@ module Newsly
       text_body     = headers.delete(:text_body)
 
       tmpl = if template_id 
-        Newsly::Template.find(template_id) 
+        Newsly::Template.find(template_id)
       elsif template_name
         Newsly::Template.where(:name => template_name, :draft => false).first
       else
