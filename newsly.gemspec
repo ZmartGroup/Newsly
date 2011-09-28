@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Manage mailer templates via wysiwyg and liquid. And send out newsletters."
   s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now. And send out newsletters."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib,public}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   
   s.add_dependency "rails", "3.1.0"
   s.add_dependency "resque"
