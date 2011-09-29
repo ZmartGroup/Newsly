@@ -27,7 +27,7 @@ module Newsly
 
     def send_test
       @template = Newsly::Template.find(params[:id])
-      if Newsly::Mailer.send_mail(@template.id, Newsly.test_receiver, Newsly.test_data).deliver
+      if Newsly::Mailer.send_mail(@template.id, "tester@newsly.com", Newsly.test_data).deliver
         render :text => "Okidoki"
       end
 
