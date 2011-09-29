@@ -8,7 +8,7 @@
 	<ul class="links">
     <li class="buttons">
 			<%= link_to "<em>❖</em>Test".html_safe, send_test_template_path(@template), :class => "remote" %>
-			<%= link_to "<em>✈</em>Publish".html_safe, publish_template_path(@template), :class => "remote" %>
+			<%= link_to "<em>✈</em>Publish".html_safe, publish_template_path(@template), :class => "remote", :id => "publish" %>
 		</li>
 
 		<li><%= link_to '<em>☜</em> Back'.html_safe, templates_path %></li>

@@ -22,7 +22,11 @@ jQuery(document).ready(function($) {
     e.preventDefault();
     top.Mercury.trigger('action', {action: 'save'});
     var template_id = $("#template").attr('data-id');
-    var to = prompt('to what email?');
+    if($(this).attr('id') != "publish"){
+      var to = prompt('to what email?');
+    } else {
+      var to = "";
+    }
     var url = $(this).attr('href');
     $.ajax({
       url:  url,

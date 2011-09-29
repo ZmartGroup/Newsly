@@ -21,12 +21,10 @@ module Newsly
 
       if tmpl 
         headers[:subject] ||= tmpl.subject
-        mail_body = tmpl.render(template_data)
-        mail_body = (render :inline => mail_body, :layout => true)
-        mail_body = Premailer.new(mail_body, :with_html_string => true, :base_url => ActionMailer::Base.default_url_options[:asset_host])
+        mail_body = tmpl.render(template_data).html_safe
         super(headers) do |format|
-          format.text { mail_body.to_plain_text }
-          format.html { mail_body.to_inline_css }
+          #format.text { Premailer.new(mail_body, :with_html_string => true).to_plain_text }
+          format.html { render :inline => mail_body, :layout => true }
         end
       else
         super(headers, &block)
