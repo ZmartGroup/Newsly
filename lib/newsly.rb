@@ -6,10 +6,11 @@ require "sanitize"
 
 module Newsly
 
-  mattr_accessor :test_data, :resource_email_column, :recipient_groups
+  mattr_accessor :test_data, :resource_email_column, :recipient_groups, :test_receiver
   @@test_data = {}
   @@recipient_groups = {}
   @@resource_email_column = :email
+  @@test_receiver = "tester@newsly.com"
 
   def self.setup
     yield self

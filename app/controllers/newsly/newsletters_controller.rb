@@ -1,6 +1,5 @@
 module Newsly
-  class NewslettersController < ApplicationController
-  
+  class NewslettersController < ApplicationController  
 
     respond_to :html, :json
     respond_to :text, :only => :preview
@@ -28,7 +27,7 @@ module Newsly
     end
 
     def send_test
-      if Newsly::Mailer.send_newsletter(@newsletter.id, "tester@newsly.com", Newsly.test_data).deliver
+      if Newsly::Mailer.send_newsletter(@newsletter.id, Newsly.test_receiver, Newsly.test_data).deliver
         render :text => "Okidoki"
       end
     end
