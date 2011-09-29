@@ -12,9 +12,5 @@ module Newsly
   		Liquid::Template.parse(self.body).render options
   	end
 
-  	def render_text(options={})
-  		Liquid::Template.parse(self.text_body).render options
-  	end
-
   end
 end
