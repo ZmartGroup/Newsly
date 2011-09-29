@@ -1,7 +1,6 @@
 # encoding: UTF-8
 module Newsly
   class Mailer < ActionMailer::Base
-    include Resque::Mailer
 
     default :from => "Newsly <noreply@newsly.com>"
     
@@ -11,7 +10,6 @@ module Newsly
       template_data = headers.delete(:template_data)
       template_id   = headers.delete(:template_id)
       template_name = headers.delete(:template_name)
-      text_body     = headers.delete(:text_body)
 
       tmpl = if template_id 
         Newsly::Template.find(template_id)
@@ -23,13 +21,12 @@ module Newsly
 
       if tmpl 
         headers[:subject] ||= tmpl.subject
-        mail_body = tmpl.render(template_data).html_safe
-        if text_body.nil?
-          text_body = tmpl.render_text(template_data).html_safe
-        end
+        mail_body = tmpl.render(template_data)
+        mail_body = (render :inline => mail_body, :layout => true)
+        mail_body = Premailer.new(mail_body, :with_html_string => true, :base_url => ActionMailer::Base.default_url_options[:asset_host])
         super(headers) do |format|
-          format.text { render :text => text_body }
-          format.html { render :inline => mail_body, :layout => true }
+          format.text { mail_body.to_plain_text }
+          format.html { mail_body.to_inline_css }
         end
       else
         super(headers, &block)
@@ -40,8 +37,7 @@ module Newsly
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
       @template = Newsly::Template.where(:name => "newsletter", :draft => false).first
       @template_data = template_data.merge({"newsletter" => {"body" => @newsletter.render(template_data)}})
-      @text_body = @newsletter.render_text(@template_data)
-      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data, :text_body => @text_body)
+      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data)
   	end
 
     def send_mail(template_id, to, template_data = {})

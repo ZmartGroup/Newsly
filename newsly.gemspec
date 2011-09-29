@@ -17,11 +17,12 @@ Gem::Specification.new do |s|
   
   s.add_dependency "rails", "3.1.0"
   s.add_dependency "resque"
-  s.add_dependency "resque_mailer"
+  #s.add_dependency "resque_mailer"
   s.add_dependency "liquid"
   s.add_dependency "sanitize"
   s.add_dependency "jquery-rails"
-  #s.add_dependency "mercury-rails"
+  #s.add_dependency "mercury-rails" when going asset pipeline
+  s.add_dependency "premailer"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "letter_opener"
