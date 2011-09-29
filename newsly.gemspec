@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   
   s.add_dependency "rails", "3.1.0"
   s.add_dependency "resque"
-  s.add_dependency "resque_mailer"
+  #s.add_dependency "resque_mailer"
   s.add_dependency "liquid"
   s.add_dependency "sanitize"
   s.add_dependency "jquery-rails"
