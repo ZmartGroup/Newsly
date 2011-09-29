@@ -22,13 +22,14 @@ jQuery(document).ready(function($) {
     e.preventDefault();
     top.Mercury.trigger('action', {action: 'save'});
     var template_id = $("#template").attr('data-id');
+    var to = prompt('to what email?');
     var url = $(this).attr('href');
     $.ajax({
       url:  url,
       type: 'POST',
-      data: {'_method': "PUT", },
+      data: {'_method': "PUT", 'to': to},
       success: function(data){
-        $("#flash").html(data).hide("fade", {}, 1000);
+        $("#flash").html(data).show().hide("fade", {}, 1000);
       }
     });
   });

@@ -27,7 +27,7 @@ module Newsly
     end
 
     def send_test
-      if Newsly::Mailer.send_newsletter(@newsletter.id, Newsly.test_receiver, Newsly.test_data).deliver
+      if Newsly::Mailer.send_newsletter(@newsletter.id, params[:to], Newsly.test_data).deliver
         render :text => "Okidoki"
       end
     end
@@ -38,7 +38,7 @@ module Newsly
         Resque.enqueue(Newsly::NewsletterSender, @newsletter.id, params[:recipient_groups])
         @newsletter.sent = true
         @newsletter.save
-        render :text => "Sent"
+        render :text => "NEWSLETTER DELIVERED"
       else
         render :text => "WARNING! Not sent, did you answer correctly?"
       end

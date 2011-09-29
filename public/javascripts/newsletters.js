@@ -38,7 +38,9 @@ jQuery(document).ready(function($) {
           type: 'POST',
           data: {'_method': 'PUT', 'answer': answer, 'recipient_groups[]': recipient_groups},
           success: function(data){
-            $("#flash").html(data).hide("fade", {}, 1000);
+            $("#flash").html(data).show().hide("fade", {}, 1000);
+            $("#deliver").remove();
+            $('.groups').remove();
           }
         });
       } 
@@ -52,12 +54,13 @@ jQuery(document).ready(function($) {
     top.Mercury.trigger('action', {action: 'save'});    
 	 	var newsletter_id = $("#newsletter").attr('data-id');
     var url = $(this).attr('href');    
+    var to = prompt('to what email?');
   	$.ajax({
       url:  url,
 			type: 'POST',
-			data: {'_method': "PUT"},
+			data: {'_method': "PUT", 'to': to},
 			success: function(data){
-				$("#flash").html(data).hide("fade", {}, 1000);
+				$("#flash").html(data).show().hide("fade", {}, 1000);
 			}
 		});	
   });

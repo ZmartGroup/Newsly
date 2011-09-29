@@ -243,3 +243,11 @@ form{
 .aloha-sidebar-handle, .aloha-sidebar-bar{
   display: none;
 }
+#flash{
+  float: left;
+  width: 100%;
+  background: #feb;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}
