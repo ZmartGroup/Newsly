@@ -3,43 +3,26 @@ module Newsly
   class Mailer < ActionMailer::Base
 
     default :from => "Newsly <noreply@newsly.com>"
-    
-    def mail(headers = {}, &block)
-      caller = caller[0][/`.*'/][1..-2] if caller
 
-      template_data = headers.delete(:template_data)
-      template_id   = headers.delete(:template_id)
-      template_name = headers.delete(:template_name)
-
-      tmpl = if template_id 
-        Newsly::Template.find(template_id)
-      elsif template_name
-        Newsly::Template.where(:name => template_name, :draft => false).first
-      else
-        Newsly::Template.find_by_caller(self.class.to_s, caller).where(:draft => false).first
-      end
-
-      if tmpl 
-        headers[:subject] ||= tmpl.subject
-        mail_body = tmpl.render(template_data).html_safe
-        super(headers) do |format|
-          #format.text { Premailer.new(mail_body, :with_html_string => true).to_plain_text }
-          format.html { render :inline => mail_body, :layout => "newsly/mailer" }
-        end
-      else
-        super(headers, &block)
-      end
-    end
-
-    def send_newsletter(newsletter_id, to, template_data = {})
+    def build_newsletter(newsletter_id, to, template_data = {})
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
       @template = Newsly::Template.where(:name => "newsletter", :draft => false).first
       @template_data = template_data.merge({"newsletter" => {"body" => @newsletter.render(template_data)}})
-      mail(:to => to, :subject => "#{@newsletter.title}", :template_id => @template.id, :template_data => @template_data)
+      self.build_mail(@template.id, to, @template_data, {:subject => "#{@newsletter.title}"})
   	end
 
-    def send_mail(template_id, to, template_data = {})
-      mail(:to => to, :template_id => template_id, :template_data => template_data)
+    def build_mail(template_id, to, template_data = {}, extra_headers = {})
+      headers = {}
+      tmpl = Newsly::Template.find(template_id)
+      headers[:to] = to
+      headers[:subject] = tmpl.subject
+      headers = headers.merge(extra_headers)
+      body = tmpl.render(template_data)
+      debugger
+      mail(headers) do |format|
+        format.text { render :inline => Premailer.new(body, :with_html_string => true).to_plain_text }
+        format.html { render :inline => Premailer.new(body, :with_html_string => true).to_inline_css }
+      end
     end
 
     def self.render_body(template_name, template_type, template_data = {})
