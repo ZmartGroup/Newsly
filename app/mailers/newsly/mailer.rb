@@ -24,7 +24,7 @@ module Newsly
         mail_body = tmpl.render(template_data).html_safe
         super(headers) do |format|
           #format.text { Premailer.new(mail_body, :with_html_string => true).to_plain_text }
-          format.html { render :inline => mail_body, :layout => true }
+          format.html { render :inline => mail_body, :layout => "newsly/mailer" }
         end
       else
         super(headers, &block)
