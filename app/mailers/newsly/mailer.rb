@@ -4,11 +4,12 @@ module Newsly
 
     default :from => Newsly.default_from, :return_path => Newsly.return_path
 
-    def build_newsletter(newsletter_id, to, template_data = {})
+    def build_newsletter(newsletter_id, to, template_data = {}, extra_headers = {})
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
       @template = Newsly::Template.where(:name => "newsletter", :draft => false).first
       @template_data = template_data.merge({"newsletter" => {"body" => @newsletter.render(template_data)}})
-      self.build_mail(@template.id, to, @template_data, {:subject => "#{@newsletter.title}"})
+      @extra_headers = {:subject => "#{@newsletter.title}"}.merge(extra_headers)
+      self.build_mail(@template.id, to, @template_data, @extra_headers)
   	end
 
     def build_mail(template_id, to, template_data = {}, extra_headers = {})
