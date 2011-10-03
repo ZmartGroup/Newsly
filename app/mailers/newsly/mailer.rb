@@ -16,12 +16,12 @@ module Newsly
       tmpl = Newsly::Template.find(template_id)
       headers[:to] = to
       headers[:subject] = tmpl.subject
-      headers = headers.merge(extra_headers)
       body = tmpl.render(template_data)
-      debugger
+      headers = headers.merge(extra_headers)
       mail(headers) do |format|
-        format.text { render :inline => Premailer.new(body, :with_html_string => true).to_plain_text }
-        format.html { render :inline => Premailer.new(body, :with_html_string => true).to_inline_css }
+        #format.text { render :inline => Premailer.new(body, :with_html_string => true).to_plain_text }
+        #format.html { render :inline => Premailer.new(body, :with_html_string => true).to_inline_css }
+        format.html{ render :inline => body, :layout => "newsly/mailer" }
       end
     end
 
