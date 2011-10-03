@@ -2,14 +2,16 @@ require "newsly/engine"
 require "resque"
 require "liquid"
 require "sanitize"
-require "premailer"
+#require "premailer"
 
 module Newsly
 
-  mattr_accessor :test_data, :resource_email_column, :recipient_groups
+  mattr_accessor :test_data, :resource_email_column, :recipient_groups, :default_from, :return_path
   @@test_data = {}
   @@recipient_groups = {}
   @@resource_email_column = :email
+  @@default_from = "changethis@newsly.com"
+  @@return_path = "changethis@newsly.com"
 
   def self.setup
     yield self

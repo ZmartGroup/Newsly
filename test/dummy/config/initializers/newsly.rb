@@ -1,6 +1,8 @@
 # encoding: UTF-8
 
 Newsly.setup do |config|
+	config.default_from = "Baraspara <info@baraspara.se>"
+	config.return_path 	= "badmail@baraspara.se"
 	config.test_data = { 
 		"kund" => { 
 			"namn" 				 	=> 	"Kim Fransman",
@@ -16,7 +18,8 @@ Newsly.setup do |config|
 			"gata" 					=> 	"Valthornsvägen",
 			"telefon" 			=> 	"085999999",
 			"ort" 					=> 	"Ösmo",
-			"postnummer" 		=>	"14856"},
+			"postnummer" 		=>	"14856",
+			"avreglank"			=>  "/membershups/unsubscripe?id=2456"},
 		"el" => {
 			"bindningstid" 			=>  "2012-01-01",
 			"forbrukning" 			=>  "2000",

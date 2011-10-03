@@ -2,7 +2,7 @@
 module Newsly
   class Mailer < ActionMailer::Base
 
-    default :from => "Newsly <noreply@newsly.com>"
+    default :from => Newsly.default_from, :return_path => Newsly.return_path
 
     def build_newsletter(newsletter_id, to, template_data = {})
   		@newsletter = Newsly::Newsletter.find(newsletter_id)
@@ -19,9 +19,7 @@ module Newsly
       body = tmpl.render(template_data)
       headers = headers.merge(extra_headers)
       mail(headers) do |format|
-        #format.text { render :inline => Premailer.new(body, :with_html_string => true).to_plain_text }
-        #format.html { render :inline => Premailer.new(body, :with_html_string => true).to_inline_css }
-        format.html{ render :inline => body, :layout => "newsly/mailer" }
+        format.html { render :inline => body, :layout => "newsly/mailer" }
       end
     end
 
