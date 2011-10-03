@@ -1,8 +1,6 @@
 require "newsly/engine"
 require "resque"
 require "liquid"
-require "sanitize"
-#require "premailer"
 
 module Newsly
 
