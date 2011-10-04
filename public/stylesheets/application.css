@@ -72,7 +72,7 @@ a:hover {
 	table{
 		width: 100%;
 	}
-	td.draft, td.sent{
+	td.draft, td.sent, td.batch{
 		width: 20px;
 	}
 	td.action{
@@ -94,6 +94,11 @@ td.sent{
 	color: #fff;
 	background: green;
 	font-size: 11px;
+}
+td.batch{
+  color: #fff;
+  background: orange;
+  font-size: 11px; 
 }
 table tr:nth-child(2n+2){
 	background: #eee;
