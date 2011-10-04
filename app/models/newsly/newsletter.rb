@@ -6,6 +6,17 @@ module Newsly
   	def render(options={})
   		Liquid::Template.parse(self.body).render options
   	end
+
+  	def draft?
+  		self.sent? || self.batch_sent? ? false : true
+  	end
+
+  	#TODO, make nicer!
+  	def status
+  		return "draft" if self.draft?
+  		return "sent" if self.sent?
+  		return "batch" if self.batch_sent?
+  	end
   	
   end
 end

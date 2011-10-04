@@ -1,68 +1,141 @@
 jQuery(document).ready(function($) {
 
-
   if (top.Mercury) {
-  window.Mercury = top.Mercury;
-  Mercury.PageEditor.prototype.save = function() {
-    var data = this.serialize();
-    var newsletter_id = $("#newsletter").attr('data-id');
-    $.ajax({
-      url:  $("#newsletter").attr('data-url'),
-      type: 'POST',
-      data: {newsletter: {title: data.title.value, body: data.body.value}, '_method': 'PUT'},
-      success: function(data){
-        $('#saved').html(data);
-      }
-    });
-  }};
-
-  $('a#deliver').click(function(e){
-  	e.preventDefault();
-    top.Mercury.trigger('action', {action: 'save'});
-    
-    var recipient_groups = [];
-
-    $('#groupform input[type=checkbox]').each(function(){
-      if($(this).is(':checked')){
-        recipient_groups.push($(this).val());
-      }
-    });
-    
-    if(recipient_groups.length > 0){
+    window.Mercury = top.Mercury;
+    Mercury.PageEditor.prototype.save = function() {
+      var data = this.serialize();
       var newsletter_id = $("#newsletter").attr('data-id');
-      var answer = prompt('Are you sure? Type "DELIVER"');
-      var url = $(this).attr('href');
-      if(answer == "DELIVER"){
-        $.ajax({
-          url:  url,        
-          type: 'POST',
-          data: {'_method': 'PUT', 'answer': answer, 'recipient_groups[]': recipient_groups},
-          success: function(data){
-            $("#flash").html(data).show().hide("fade", {}, 1000);
-            $("#deliver").remove();
-            $('.groups').remove();
-          }
-        });
-      } 
-    } else{
-      alert('You have to select atleast one group to send to!');
+      $.ajax({
+        url:  $("#newsletter").attr('data-url'),
+        type: 'POST',
+        data: {newsletter: {title: data.title.value, body: data.body.value}, '_method': 'PUT'},
+        success: function(data){
+          $('#saved').html(data);
+        }
+      });
     }
-  });
+    
 
-  $('a#send_test').click(function(e){
-  	e.preventDefault();
-    top.Mercury.trigger('action', {action: 'save'});    
-	 	var newsletter_id = $("#newsletter").attr('data-id');
-    var url = $(this).attr('href');    
-    var to = prompt('to what email?');
-  	$.ajax({
-      url:  url,
-			type: 'POST',
-			data: {'_method': "PUT", 'to': to},
-			success: function(data){
-				$("#flash").html(data).show().hide("fade", {}, 1000);
-			}
-		});	
-  });
+    $('a#deliver_batch').click(function(e){
+      e.preventDefault();
+      top.Mercury.trigger('action', {action: 'save'});
+      var url = $(this).attr('href');
+      var recipient_groups = get_recipient_groups();
+      if($('#batch_size').val() <= 0){ alert('Batch size cant be 0!'); return false;}
+      if(recipient_groups.length == 1){
+        var newsletter_id = $("#newsletter").attr('data-id');
+        var answer = prompt('Are you sure? Type "BATCH"');
+        var batch_size = parseInt($('#batch_size').val());
+        if(answer == "BATCH"){
+          $.ajax({
+            url:  url,        
+            type: 'POST',
+            data: {'_method': 'PUT', 'answer': answer, 'recipient_group': recipient_groups[0], 'batch_size': batch_size},
+            success: function(data){
+              $("#flash").html(data).show().hide("fade", {}, 1000);
+              calculate_group_count(recipient_groups[0], batch_size);
+            }
+          });
+        } 
+      } else{
+        alert('You have to select 1 (one) group to send to!');
+      }
+    });
+
+    $('a#deliver').click(function(e){
+    	e.preventDefault();
+      top.Mercury.trigger('action', {action: 'save'});
+      var url = $(this).attr('href');    
+      var recipient_groups = get_recipient_groups();
+      if(recipient_groups.length > 0){
+        var newsletter_id = $("#newsletter").attr('data-id');
+        var answer = prompt('Are you sure? Type "DELIVER"');
+        if(answer == "DELIVER"){
+          $.ajax({
+            url:  url,        
+            type: 'POST',
+            data: {'_method': 'PUT', 'answer': answer, 'recipient_groups[]': recipient_groups},
+            success: function(data){
+              $("#flash").html(data).show().hide("fade", {}, 1000);
+              $(".deliverbutton").remove();
+              $('.groups').remove();
+            }
+          });
+        } 
+      } else{
+        alert('You have to select atleast one group to send to!');
+      }
+    });
+
+    $('a#send_test').click(function(e){
+    	e.preventDefault();
+      top.Mercury.trigger('action', {action: 'save'});    
+  	 	var newsletter_id = $("#newsletter").attr('data-id');
+      var url = $(this).attr('href');    
+      var to = prompt('to what email?');
+    	$.ajax({
+        url:  url,
+  			type: 'POST',
+  			data: {'_method': "PUT", 'to': to},
+  			success: function(data){
+  				$("#flash").html(data).show().hide("fade", {}, 1000);
+  			}
+  		});	
+    });
+
+    $('#groupform input[type=checkbox]').change(function(){
+      if(get_recipient_groups().length > 0){
+        $('.deliverbutton').show();
+        set_batch_size();
+      } else {
+        $('.deliverbutton').hide();      
+      }
+    });
+
+    $('#batch_size').change(function(e){
+      $('#batch_size_preview').html($(this).val());
+    });
+
+    set_batch_size();
+  }; 
 
 });
+
+
+var set_batch_size = function(){
+  max_batch_size = get_maximum_batch_size();
+  $('#batch_size').val(0);
+  $('#batch_size_preview').html($('#batch_size').val());
+  $('#batch_size').attr('max', max_batch_size);
+  $('#batch_size').attr('min', 0);
+  $('#batch_size').val(0);
+}
+
+var get_recipient_groups = function(){
+  var recipient_groups = [];
+
+  $('#groupform input[type=checkbox]').each(function(){
+    if($(this).is(':checked')){
+      recipient_groups.push($(this).val());
+    }
+  });
+  return recipient_groups;
+}
+
+var get_maximum_batch_size = function(){
+  var max_size = 0;
+  $('#groupform input[type=checkbox]').each(function(){
+    if($(this).is(':checked')){
+      max_size = max_size + parseInt($(this).attr('data-max'));
+    }
+  });
+  console.log('MAXIMUM SIZE '+ max_size);  
+  return max_size; 
+}
+
+var calculate_group_count = function(groupname, batch_size){
+  new_max_size = parseInt($('#group_'+groupname).attr('data-max')) - batch_size;
+  $('#group_'+groupname).attr('data-max', new_max_size);
+  $('label[for=group_'+groupname+'] .count').html(new_max_size);
+  set_batch_size();
+}

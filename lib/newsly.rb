@@ -1,6 +1,7 @@
 require "newsly/engine"
 require "resque"
 require "liquid"
+require "resque-async_deliver"
 
 module Newsly
 

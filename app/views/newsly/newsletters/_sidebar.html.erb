@@ -1,28 +1,37 @@
 <div id="sidebar">
 	<ul class="links">
+		<li><%= link_to '<em>☜</em> Back'.html_safe, newsletters_path %></li>	
+		<li class="button">
+			<%= link_to "<em>❖</em>Send test".html_safe, send_test_newsletter_path(@newsletter), :id => "send_test"%>
+		</li>
 		<% if !@newsletter.sent? and @newsletter.persisted?%>
-			<li class="button">
-				<%= link_to "<em>❖</em>Send test".html_safe, send_test_newsletter_path(@newsletter), :id => "send_test"%>
-			</li>
 			<% if Newsly.recipient_groups.count > 0 %>
 				<li class="groups">
 					<form id="groupform" class="groupform">
+						<h3>Recipient Groups</h3>
 						<ul>
+							<% @max_batch_size = 0 %>
 							<% for group in Newsly.recipient_groups %>
+								<% @group_count = group[1].call.count %>
+								<% @max_batch_size = @max_batch_size + @group_count %>
 								<li>
-									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" />
-									<label for="group_<%=group[0].to_s%>"><%= group[0].to_s.humanize %> (<%= group[1].call.count %>)</label>
+									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" data-max="<%= @group_count %>"/>
+									<label for="group_<%=group[0].to_s%>"><%= group[0].to_s.humanize %> (<span class="count"><%= @group_count %></span>)</label>
 								</li>
 							<% end %>
 						</ul>
 					</form>
 				</li>
-				<li class="button">
-					<%= link_to "<em>✈</em>Deliver!".html_safe, deliver_newsletter_path(@newsletter), :id => "deliver"%>			
+				<li class="button range deliverbutton">
+					<span id="batch_size_preview"></span>
+					<input type="range" min="0" value="0" max="<%= @max_batch_size %>" id="batch_size" />
+					<%= link_to "<em>✈</em>Deliver Batch!".html_safe, deliver_batch_newsletter_path(@newsletter), :id => "deliver_batch"%>
+				</li>
+				<li class="button deliverbutton">
+					<%= link_to "<em>✈</em>Deliver All!".html_safe, deliver_newsletter_path(@newsletter), :id => "deliver"%>
 				</li>
 			<% end %>
 		<% end %>
-		<li><%= link_to '<em>☜</em> Back'.html_safe, newsletters_path %></li>
 	</ul>
 	<div id="saved"></div>	
 </div>

@@ -1,4 +1,4 @@
-Customer.create({:first_name => "Kim", :last_name => "Fransman", :email => "kim@baraspara.se", :company => false})
-Customer.create({:first_name => "Fredrik", :last_name => "Bohlin", :email => "fredrik@baraspara.se", :company => false})
-Customer.create({:first_name => "Hej", :last_name => "San", :email => "hejsan@baraspara.se", :company => true})
-Newsly::Template.create({:name => "newsletter", :body => "", :draft => false})
+100.times do |i|
+	Customer.create({:first_name => "Kim", :last_name => "Fransman", :email => "kim.fransman+1#{i}1@gmail.com", :company => false})
+end
+Newsly::Template.create({:name => "newsletter", :body => "{{newsletter.body}}", :subject => "Nyhetsbrev", :draft => false})

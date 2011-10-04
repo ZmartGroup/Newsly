@@ -4,6 +4,7 @@ Newsly::Engine.routes.draw do
 		member do
 			put 'send_test'
 			put 'deliver'
+			put 'deliver_batch'
 		end
 	end
 

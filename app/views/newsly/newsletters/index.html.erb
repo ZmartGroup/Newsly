@@ -5,9 +5,11 @@
 	  <tbody>
 			<% @newsletters.each do |newsletter| %>
 			  <tr>
-			    <td class="<%= newsletter.sent? ? "sent": "draft" %>"><%= newsletter.sent? ? t("sent"): t("draft") %></td>
+			    <td class="<%= newsletter.status%>"><%= newsletter.status %></td>
 			    <td class="title"><%= link_to newsletter.title, newsletter %></td>
-			    <td class="action"><%= link_to 'Destroy', newsletter, confirm: 'Are you sure?', method: :delete if !newsletter.sent?%></td>
+			    <td class="action">
+			    	<%= link_to 'Destroy', newsletter, confirm: 'Are you sure?', method: :delete if newsletter.draft? %>
+			    </td>
 			  </tr>
 			<% end %>
 		</tbody>

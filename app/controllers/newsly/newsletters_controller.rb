@@ -34,7 +34,6 @@ module Newsly
 
     def deliver
       if params[:answer] == "DELIVER"
-        #Newsly::NewsletterSender.perform(@newsletter.id, params[:recipient_groups])
         Resque.enqueue(Newsly::NewsletterSender, @newsletter.id, params[:recipient_groups])
         @newsletter.sent = true
         @newsletter.save
@@ -42,6 +41,17 @@ module Newsly
       else
         render :text => "WARNING! Not sent, did you answer correctly?"
       end
+    end
+
+    def deliver_batch
+      if params[:answer] == "BATCH"
+        Resque.enqueue(Newsly::NewsletterBatchSender, @newsletter.id, params[:recipient_group], params[:batch_size])
+        @newsletter.batch_sent = true
+        @newsletter.save
+        render :text => "BATCH DELIVERED"        
+      else
+        render :text => "WARNING! Not sent, did you answer correctly?"
+      end  
     end
 
     def destroy
