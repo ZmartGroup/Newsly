@@ -12,7 +12,7 @@
 						<ul>
 							<% @max_batch_size = 0 %>
 							<% for group in Newsly.recipient_groups %>
-								<% @group_count = group[1].call.count %>
+								<% @group_count = group[1].call(@newsletter.id).count.size %>
 								<% @max_batch_size = @max_batch_size + @group_count %>
 								<li>
 									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" data-max="<%= @group_count %>"/>
