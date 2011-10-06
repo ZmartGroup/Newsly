@@ -248,13 +248,21 @@ form{
 .aloha-sidebar-handle, .aloha-sidebar-bar{
   display: none;
 }
-#flash{
+#flash, .flash{
   float: left;
   width: 100%;
   background: #feb;
   text-align: center;
   padding: 10px 0;
   display: none;
+}
+.notice{
+  background: #c00;
+  color: #fff;
+  font-size: 0.9em;
+  float: left;
+  padding: 10px;
+  margin: 10px 0;
 }
 #batch_size{
   padding: 0;

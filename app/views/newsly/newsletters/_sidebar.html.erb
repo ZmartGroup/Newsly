@@ -4,7 +4,10 @@
 		<li class="button">
 			<%= link_to "<em>❖</em>Send test".html_safe, send_test_newsletter_path(@newsletter), :id => "send_test"%>
 		</li>
-		<% if !@newsletter.sent? and @newsletter.persisted?%>
+		<% if @queues_working %>
+			<div class="notice">Some workers are still working, delivering disabled for now! Please reload later!</div>
+
+		<% elsif !@newsletter.sent? and @newsletter.persisted?%>
 			<% if Newsly.recipient_groups.count > 0 %>
 				<li class="groups">
 					<form id="groupform" class="groupform">

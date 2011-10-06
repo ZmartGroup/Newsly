@@ -35,7 +35,8 @@ jQuery(document).ready(function($) {
             data: {'_method': 'PUT', 'answer': answer, 'recipient_group': recipient_groups[0], 'batch_size': batch_size},
             success: function(data){
               $("#flash").html(data).show().hide("fade", {}, 1000);
-              calculate_group_count(recipient_groups[0], batch_size);
+              $(".deliverbutton").remove();
+              $('.groups').remove();
             }
           });
         } 
@@ -128,11 +129,4 @@ var get_maximum_batch_size = function(){
   });
   console.log('MAXIMUM SIZE '+ max_size);  
   return max_size; 
-}
-
-var calculate_group_count = function(groupname, batch_size){
-  new_max_size = parseInt($('#group_'+groupname).attr('data-max')) - batch_size;
-  $('#group_'+groupname).attr('data-max', new_max_size);
-  $('label[for=group_'+groupname+'] .count').html(new_max_size);
-  set_batch_size();
 }

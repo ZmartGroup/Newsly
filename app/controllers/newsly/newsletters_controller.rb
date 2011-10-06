@@ -12,6 +12,9 @@ module Newsly
     end
 
     def show
+      if Resque.size(:newsletter) > 0 || Resque.size(:mail) > 0
+        @queues_working = true
+      end
     end
 
     def new
