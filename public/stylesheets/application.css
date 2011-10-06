@@ -256,22 +256,9 @@ form{
   padding: 10px 0;
   display: none;
 }
-
-#batch_size_preview{
-  float: left;
-  background: #feb;
-  padding: 1px 5px;
-  border-radius: 5px;
-  font-size: 0.85em;
-  margin-bottom: 10px;
-  width: 20%;
-  text-align: center;
-}
 #batch_size{
-  float: right;
-  width: 70%;
   padding: 0;
-  margin-top: 5px;
+  margin: 5px 0;
 }
 li.deliverbutton{
   display: none;

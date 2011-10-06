@@ -19,9 +19,11 @@ jQuery(document).ready(function($) {
     $('a#deliver_batch').click(function(e){
       e.preventDefault();
       top.Mercury.trigger('action', {action: 'save'});
+
       var url = $(this).attr('href');
       var recipient_groups = get_recipient_groups();
       if($('#batch_size').val() <= 0){ alert('Batch size cant be 0!'); return false;}
+      if($('#batch_size').val() > parseInt($('#batch_size').attr('data-max'))){ alert('Batch size cant be over group count!'); return false;}
       if(recipient_groups.length == 1){
         var newsletter_id = $("#newsletter").attr('data-id');
         var answer = prompt('Are you sure? Type "BATCH"');
@@ -84,19 +86,17 @@ jQuery(document).ready(function($) {
     });
 
     $('#groupform input[type=checkbox]').change(function(){
-      if(get_recipient_groups().length > 0){
+      group_length = get_recipient_groups().length;
+      if(group_length > 0){
         $('.deliverbutton').show();
+        if(group_length > 1){
+          $('li.range').hide();
+        }
         set_batch_size();
       } else {
         $('.deliverbutton').hide();      
       }
     });
-
-    $('#batch_size').change(function(e){
-      $('#batch_size_preview').html($(this).val());
-    });
-
-    set_batch_size();
   }; 
 
 });
@@ -105,10 +105,7 @@ jQuery(document).ready(function($) {
 var set_batch_size = function(){
   max_batch_size = get_maximum_batch_size();
   $('#batch_size').val(0);
-  $('#batch_size_preview').html($('#batch_size').val());
-  $('#batch_size').attr('max', max_batch_size);
-  $('#batch_size').attr('min', 0);
-  $('#batch_size').val(0);
+  $('#batch_size').attr('data-max', max_batch_size);
 }
 
 var get_recipient_groups = function(){

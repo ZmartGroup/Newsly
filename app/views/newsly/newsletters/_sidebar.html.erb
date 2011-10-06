@@ -23,8 +23,7 @@
 					</form>
 				</li>
 				<li class="button range deliverbutton">
-					<span id="batch_size_preview"></span>
-					<input type="range" min="0" value="0" max="<%= @max_batch_size %>" id="batch_size" />
+					<input type="text" data-max="<%= @max_batch_size %>" id="batch_size" />
 					<%= link_to "<em>✈</em>Deliver Batch!".html_safe, deliver_batch_newsletter_path(@newsletter), :id => "deliver_batch"%>
 				</li>
 				<li class="button deliverbutton">
