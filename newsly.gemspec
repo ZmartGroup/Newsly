@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib,public}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   
-  s.add_dependency "rails", "3.1.0"
+  s.add_dependency "rails", ">= 3.1.0"
   s.add_dependency "resque"
   #s.add_dependency "resque_mailer"
   s.add_dependency "liquid"
