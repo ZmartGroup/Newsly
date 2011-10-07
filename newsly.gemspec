@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Manage mailer templates via wysiwyg and liquid. Uses mercury editor for now. And send out newsletters."
 
   s.files = Dir["{app,config,db,lib,public}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
-  
+
   s.add_dependency "rails", ">= 3.1.0"
   s.add_dependency "resque"
   s.add_dependency "liquid"
@@ -25,5 +25,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "letter_opener"
   s.add_development_dependency "unicorn"
 
-  s.add_development_dependency "combustion"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "capybara-webkit"
+  s.add_development_dependency "database_cleaner"
 end

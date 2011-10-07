@@ -14,7 +14,6 @@ jQuery(document).ready(function($) {
         }
       });
     }
-    
 
     $('a#deliver_batch').click(function(e){
       e.preventDefault();
@@ -30,7 +29,7 @@ jQuery(document).ready(function($) {
         var batch_size = parseInt($('#batch_size').val());
         if(answer == "BATCH"){
           $.ajax({
-            url:  url,        
+            url:  url,
             type: 'POST',
             data: {'_method': 'PUT', 'answer': answer, 'recipient_group': recipient_groups[0], 'batch_size': batch_size},
             success: function(data){
@@ -39,23 +38,23 @@ jQuery(document).ready(function($) {
               $('.groups').remove();
             }
           });
-        } 
+        }
       } else{
         alert('You have to select 1 (one) group to send to!');
       }
     });
 
     $('a#deliver').click(function(e){
-    	e.preventDefault();
+      e.preventDefault();
       top.Mercury.trigger('action', {action: 'save'});
-      var url = $(this).attr('href');    
+      var url = $(this).attr('href');
       var recipient_groups = get_recipient_groups();
       if(recipient_groups.length > 0){
         var newsletter_id = $("#newsletter").attr('data-id');
         var answer = prompt('Are you sure? Type "DELIVER"');
         if(answer == "DELIVER"){
           $.ajax({
-            url:  url,        
+            url:  url,
             type: 'POST',
             data: {'_method': 'PUT', 'answer': answer, 'recipient_groups[]': recipient_groups},
             success: function(data){
@@ -64,26 +63,26 @@ jQuery(document).ready(function($) {
               $('.groups').remove();
             }
           });
-        } 
+        }
       } else{
         alert('You have to select atleast one group to send to!');
       }
     });
 
     $('a#send_test').click(function(e){
-    	e.preventDefault();
-      top.Mercury.trigger('action', {action: 'save'});    
-  	 	var newsletter_id = $("#newsletter").attr('data-id');
-      var url = $(this).attr('href');    
+      e.preventDefault();
+      top.Mercury.trigger('action', {action: 'save'});
+      var newsletter_id = $("#newsletter").attr('data-id');
+      var url = $(this).attr('href');
       var to = prompt('to what email?');
-    	$.ajax({
+      $.ajax({
         url:  url,
-  			type: 'POST',
-  			data: {'_method': "PUT", 'to': to},
-  			success: function(data){
-  				$("#flash").html(data).show().hide("fade", {}, 1000);
-  			}
-  		});	
+        type: 'POST',
+        data: {'_method': "PUT", 'to': to},
+        success: function(data){
+          $("#flash").html(data).show().hide("fade", {}, 1000);
+        }
+      });
     });
 
     $('#groupform input[type=checkbox]').change(function(){
@@ -95,10 +94,10 @@ jQuery(document).ready(function($) {
         }
         set_batch_size();
       } else {
-        $('.deliverbutton').hide();      
+        $('.deliverbutton').hide();
       }
     });
-  }; 
+  };
 
 });
 
@@ -127,6 +126,6 @@ var get_maximum_batch_size = function(){
       max_size = max_size + parseInt($(this).attr('data-max'));
     }
   });
-  console.log('MAXIMUM SIZE '+ max_size);  
-  return max_size; 
+  console.log('MAXIMUM SIZE '+ max_size);
+  return max_size;
 }

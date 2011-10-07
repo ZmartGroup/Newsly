@@ -1,1 +1,13 @@
 source :rubygems
+
+
+group :test do
+  gem "newsly"
+  gem "letter_opener"
+  gem "spork"
+  gem "sqlite3"
+  gem "rspec-rails"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "database_cleaner"
+end
