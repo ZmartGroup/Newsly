@@ -24,4 +24,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "letter_opener"
   s.add_development_dependency "unicorn"
+
+  s.add_development_dependency "combustion"
 end
