@@ -1,7 +1,7 @@
 <div id="content">
 	<div id="template" data-id="<%=@template.id%>" data-url="<%=template_path(@template)%>">
-		<h2 id="subject" class="mercury-region" data-type="markupable"><%= @template.subject.html_safe %></h2>
-		<div id="body" class="mercury-region" data-type="editable"><%=	@template.body.html_safe %></div>
+		<h2 id="subject" class="editable"><%= @template.subject.html_safe %></h2>
+		<div id="body" class="editable"><%=	@template.body.html_safe %></div>
 	</div>
 </div>
 <div id="sidebar">
@@ -15,5 +15,3 @@
 	</ul>
 	<div id="saved"></div>		
 </div>
-
-<%= javascript_include_tag "/mercury/javascripts/mercury_loader.js", "templates" %>

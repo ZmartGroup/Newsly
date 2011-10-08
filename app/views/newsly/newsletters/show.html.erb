@@ -1,9 +1,7 @@
 <div id="content">
 	<div id="newsletter" data-id="<%=@newsletter.id%>" data-url="<%=newsletter_path(@newsletter)%>">
-		<h2 id="title" class="mercury-region" data-type="markupable"><%= @newsletter.title.html_safe %></h2>
-		<div id="body" class="mercury-region" data-type="editable"><%=	@newsletter.body.html_safe %></div>
+		<h2 id="title" class="editable"><%= @newsletter.title.html_safe %></h2>
+		<div id="body" class="editable"><%=	@newsletter.body.html_safe %></div>
 	</div>
 </div>
 <%= render 'sidebar' %>
-
-<%= javascript_include_tag "/mercury/javascripts/mercury_loader.js", "newsletters" %>
