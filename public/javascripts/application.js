@@ -139,7 +139,7 @@ var get_maximum_batch_size = function(){
 
 
 var saveNewsletter = function(){
- var newsletter = {'title': $('#title').val(), 'body': $('#body').val()}
+ var newsletter = {'title': $('#title').html(), 'body': $('#body').html()}
  $.ajax({
    url: $('#newsletter').attr('data-url'),
    type: 'POST',
@@ -151,7 +151,7 @@ var saveNewsletter = function(){
 }
 
 var saveTemplate = function(){
- var template = {'title': $('#title').val(), 'body': $('#body').val()}
+ var template = {'subject': $('#subject').html(), 'body': $('#body').html()}
  $.ajax({
    url: $('#template').attr('data-url'),
    type: 'POST',
