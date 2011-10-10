@@ -2,6 +2,7 @@ require "newsly/engine"
 require "resque"
 require "liquid"
 require "resque-async_deliver"
+require "mercury-rails"
 
 module Newsly
 

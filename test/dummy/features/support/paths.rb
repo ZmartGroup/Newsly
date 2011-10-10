@@ -8,6 +8,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
+    when 'an editable page' then '/editor'
+
     when /the root( page)?/ then '/'
     when /the home\s?page/ then '/'
     when /the url: "(.*)"/ then url_for($1)

@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "liquid"
   s.add_dependency "jquery-rails"
   s.add_dependency "resque-async_deliver"
+  s.add_dependency "mercury-rails", "0.2.0"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "letter_opener"
@@ -28,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
   s.add_development_dependency "database_cleaner"
-  s.add_development_dependency 'selenium-webdriver'
+  s.add_development_dependency 'selenium-webdriver', '2.5.0'
   s.add_development_dependency 'cucumber-rails'
   s.add_development_dependency 'capybara-firebug'
 end

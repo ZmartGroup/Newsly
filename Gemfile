@@ -12,4 +12,3 @@ gemspec
 
 # To use debugger
 gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'mercury-rails', :git => 'git://github.com/jejacks0n/mercury.git'

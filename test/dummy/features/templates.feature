@@ -6,11 +6,9 @@ Feature:
 
   Background:
     Given some templates exists
-      And I go to the home page
-      And I follow "Templates"
-      And I follow "cc_welcome"
-
 
   Scenario: A user can publish their changes
-    Given I press "Publish" in the content frame
+    Given I go to the url: "/templates"
+      And I follow "cc_welcome"
+      And I press "Publish" in the content frame
     Then I should see "Published" in the content frame

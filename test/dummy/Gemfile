@@ -1,15 +1,1 @@
 source :rubygems
-
-
-group :test do
-  gem "newsly"
-  gem "letter_opener"
-  gem "spork"
-  gem "sqlite3"
-  gem "rspec-rails"
-	gem 'selenium-webdriver'
-  gem 'cucumber-rails'
-  gem 'capybara-firebug'
-  gem 'capybara'
-  gem 'database_cleaner'
-end
