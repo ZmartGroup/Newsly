@@ -5,7 +5,7 @@
 	  <tbody>
 			<% @templates.each do |template| %>
 			  <tr>
-			    <td class="title"><%= link_to template.name, template %> (<%=t(template.template_type)%>)</td>
+			    <td class="title"><%= link_to template.name, "/editor#{template_path(template)}" %> (<%=t(template.template_type)%>)</td>
 			  </tr>
 			<% end %>
 		</tbody>

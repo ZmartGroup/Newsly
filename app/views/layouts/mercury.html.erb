@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <title>Mercury Editor</title>
+    <%= stylesheet_link_tag    'mercury', 'mercury_overrides' %>
+    <%= javascript_include_tag 'mercury' %>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var saveUrl = null;
+      var options = {
+        saveStyle: 'form',  // 'form', or 'json' (default json)
+        saveMethod: 'put', // 'POST', or 'PUT', (create, vs. update -- default POST)
+        visible: null     // if the interface should start visible or not (default true)
+      };
+      new Mercury.PageEditor(saveUrl, options)
+    </script>
+  </body>
+</html>

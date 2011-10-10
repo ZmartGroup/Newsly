@@ -7,7 +7,9 @@ group :test do
   gem "spork"
   gem "sqlite3"
   gem "rspec-rails"
-  gem "capybara"
-  gem "capybara-webkit"
-  gem "database_cleaner"
+	gem 'selenium-webdriver'
+  gem 'cucumber-rails'
+  gem 'capybara-firebug'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
