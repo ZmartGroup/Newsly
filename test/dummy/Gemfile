@@ -1,6 +1,8 @@
 source :rubygems
 
 
+gem "unicorn"
+
 group :test do
   gem "newsly"
   gem "letter_opener"
