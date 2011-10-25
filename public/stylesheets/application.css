@@ -69,17 +69,17 @@ a:hover {
 }
 
 
-	table{
-		width: 100%;
-	}
-	td.draft, td.sent, td.batch{
-		width: 20px;
-	}
-	td.action{
-		width: 20px;
-		padding: 5px;
-		font-size: 11px;
-	}
+table{
+	width: 100%;
+}
+td.draft, td.sent, td.batch{
+	width: 20px;
+}
+td.action{
+	width: 20px;
+	padding: 5px;
+	font-size: 11px;
+}
 td {
   padding: 5px 10px;
   text-align: left;
@@ -102,6 +102,22 @@ td.batch{
 }
 table tr:nth-child(2n+2){
 	background: #eee;
+}
+td.title span.desc{
+  float: left;
+  width: 100%;
+  font-size: 0.8em;
+  color: #555;
+  text-indent: 100px;
+}
+td.title span.type{
+  float: left;
+  font-size: 0.8em;
+  width: 100px;
+}
+td a.friendly_name{
+  font-weight: bold;
+  text-transform: capitalize;
 }
 #sidebar ul {
   margin: 0;
@@ -270,4 +286,33 @@ form{
 }
 li.deliverbutton{
   display: none;
+}
+
+.type_tabs{
+  float: right;
+  margin-top: -40px;
+  font-size: 0.8em;
+  list-style: none;
+}
+.type_tabs li{
+  float: left;
+}
+.type_tabs li.title{
+  padding: 3px 5px;
+}
+.type_tabs li a {
+  padding: 3px 10px;
+  color: #000;
+  border-left: 1px solid #ccc;
+  float: left;
+  text-decoration: none;  
+}
+.type_tabs li a:hover{
+  text-indent: 0px;
+  background: #eee;
+  color: #000;
+}
+.type_tabs li.active a{
+  font-weight: bold;
+  background: #ccc;
 }

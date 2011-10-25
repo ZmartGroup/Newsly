@@ -38,4 +38,17 @@ jQuery(document).ready(function($) {
     });
   });
 
+  $('.type_tabs a').click(function(e){
+    e.preventDefault();
+    template_type = ''+$(this).attr('data-type')+'';
+    $('.type_tabs li').removeClass('active'); 
+    $('table#templates tr').hide();
+    $(this).parent('li').addClass('active');
+    if(template_type != "undefined"){
+      $('table#templates tr.'+template_type+'').show();
+    } else {
+      $('table#templates tr').show();
+    }
+  });
+
 });

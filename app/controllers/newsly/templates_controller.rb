@@ -3,7 +3,8 @@ module Newsly
   class TemplatesController < ApplicationController
 	
   	def index
-  		@templates = Newsly::Template.where(:draft => false)
+  		@templates = Newsly::Template.where(:draft => false).order('friendly_name')
+      @template_types = Newsly::Template.all.map(&:template_type).uniq
   	end
 
   	def show
