@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025074010) do
+ActiveRecord::Schema.define(:version => 20111025132553) do
 
   create_table "customers", :force => true do |t|
     t.string   "email"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20111025074010) do
     t.datetime "updated_at"
     t.integer  "batch_sent"
     t.boolean  "working"
+    t.text     "internal_template"
   end
 
   create_table "newsly_templates", :force => true do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20111025074010) do
     t.integer  "parent_id"
     t.string   "friendly_name"
     t.string   "description"
+    t.text     "internal_template"
   end
 
 end

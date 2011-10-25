@@ -2,6 +2,7 @@ source :rubygems
 
 
 gem "unicorn"
+gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   gem "newsly"
