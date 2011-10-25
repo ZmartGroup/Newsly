@@ -5,10 +5,10 @@ module Newsly
     respond_to :text, :only => :preview
   
 
-    before_filter :get_newsletter, :except => [:index]
+    before_filter :get_newsletter, :except => [:new, :index]
     
     def index
-      @newsletters = Newsletter.all
+      @newsletters = Newsletter.order('created_at desc').all
     end
 
     def show
@@ -18,7 +18,8 @@ module Newsly
     end
 
     def new
-      render :show
+      @newsletter = Newsly::Newsletter.create(:title => "Nyhetsbrevs rubrik", :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.", :sent => false)
+      redirect_to newsletter_url(@newsletter)
     end
 
     def update
@@ -64,7 +65,7 @@ module Newsly
 
     protected
       def get_newsletter
-        @newsletter = params[:id] ? Newsly::Newsletter.find(params[:id]) : Newsly::Newsletter.create(:title => "Nyhetsbrevs rubrik", :body => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.", :sent => false)
+        @newsletter = Newsly::Newsletter.find(params[:id])
       end
   end
 end
