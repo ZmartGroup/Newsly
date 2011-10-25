@@ -12,7 +12,7 @@ module Newsly
       self.build_mail(@template.id, to, @template_data, @extra_headers)
   	end
 
-    def build_mail(template_id, to, template_data = {}, extra_headers = {})
+    def build_mail(template_id, to, template_data = {}, extra_headers = {}, layout = "newsly/mailer")
       headers = {}
       tmpl = Newsly::Template.find(template_id)
       headers[:to] = to
@@ -20,7 +20,7 @@ module Newsly
       body = tmpl.render(template_data)
       headers = headers.merge(extra_headers)
       mail(headers) do |format|
-        format.html { render :inline => body, :layout => "newsly/mailer" }
+        format.html { render :inline => body, :layout => layout }
       end
     end
 
