@@ -2,6 +2,8 @@ development:
   database: baraspara.db
   adapter: sqlite3
 
-test: &test
-  database: baraspara_test.db
+# config/database.yml in Rails
+test:
   adapter: sqlite3
+  database: ":memory:"
+  timeout: 500

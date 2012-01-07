@@ -1,8 +1,9 @@
 source :rubygems
 
-
-gem "unicorn"
-gem 'ruby-debug19', :require => 'ruby-debug'
+group :development do
+  gem "unicorn"
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
 
 group :test do
   gem "newsly"
@@ -13,4 +14,5 @@ group :test do
   gem "capybara"
   gem "capybara-webkit"
   gem "database_cleaner"
+  gem "rake"
 end
