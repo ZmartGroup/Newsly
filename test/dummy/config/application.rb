@@ -4,7 +4,6 @@ require 'rails/all'
 
 Bundler.require
 require "newsly"
-require "letter_opener"
 
 module Dummy
   class Application < Rails::Application
@@ -42,8 +41,6 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    config.action_mailer.delivery_method = :letter_opener      
     
   end
 end
