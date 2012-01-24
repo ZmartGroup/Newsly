@@ -182,6 +182,7 @@ DEPENDENCIES
   database_cleaner
   letter_opener
   newsly
+  rake
   rspec-rails
   ruby-debug19
   spork

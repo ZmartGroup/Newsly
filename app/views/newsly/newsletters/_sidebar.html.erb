@@ -8,18 +8,17 @@
 			<div class="notice">Some workers are still working, delivering disabled for now! Please reload later!</div>
 
 		<% elsif !@newsletter.sent? and @newsletter.persisted?%>
-			<% if Newsly.recipient_groups.count > 0 %>
+			<% if @recipient_groups.count > 0 %>
 				<li class="groups">
 					<form id="groupform" class="groupform">
 						<h3>Recipient Groups</h3>
 						<ul>
 							<% @max_batch_size = 0 %>
-							<% for group in Newsly.recipient_groups %>
-								<% @group_count = group[1].call(@newsletter.id).count %>
-								<% @max_batch_size = @max_batch_size + @group_count %>
+							<% for group in @recipient_groups %>
+								<% @max_batch_size = @max_batch_size + group[2] %>
 								<li>
-									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" data-max="<%= @group_count %>"/>
-									<label for="group_<%=group[0].to_s%>"><%= group[0].to_s.humanize %> (<span class="count"><%= @group_count %></span>)</label>
+									<input type="checkbox" name="<%=group[0].to_s%>" value="<%=group[0].to_s%>" id="group_<%=group[0].to_s%>" data-max="<%= group[2] %>"/>
+									<label for="group_<%=group[0].to_s%>"><%= group[0].to_s.humanize %> (<span class="count"><%= group[2] %></span>)</label>
 								</li>
 							<% end %>
 						</ul>

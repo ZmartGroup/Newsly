@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(:version => 20111025132553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "batch_sent"
-    t.boolean  "working"
     t.text     "internal_template"
   end
 

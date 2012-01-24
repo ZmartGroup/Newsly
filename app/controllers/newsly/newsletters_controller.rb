@@ -15,6 +15,11 @@ module Newsly
       if Resque.size(:newsletter) > 0 || Resque.size(:mail) > 0
         @queues_working = true
       end
+      @recipient_groups = []
+      for group in Newsly.recipient_groups
+        group[2] ||= group[1].call(@newsletter.id).count
+        @recipient_groups.push(group)
+      end
     end
 
     def new
